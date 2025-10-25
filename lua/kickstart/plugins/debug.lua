@@ -74,7 +74,22 @@ return {
       function()
         require('dap-python').test_method()
       end,
-      { desc = '[D]AP UI [T]est [M]ethod' },
+      desc = '[D]AP UI [T]est [M]ethod',
+    },
+    {
+      '<leader>dtf',
+      function()
+        require('dap-python').test_class()
+      end,
+      desc = '[D]AP UI [T]est [F]ile',
+    },
+    -- Add this to the `keys` table in debug.lua
+    {
+      '<leader>dtc',
+      function()
+        vim.cmd "vsplit | terminal export $(grep -v '^\\#' .env | xargs) && coverage run && coverage report"
+      end,
+      desc = '[D]AP UI [T]est [C]overage',
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {

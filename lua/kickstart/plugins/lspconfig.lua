@@ -235,6 +235,13 @@ return {
             },
           },
         },
+        basedpyright = {
+          analysis = {
+            autoSearchPaths = true,
+            diagnosticMode = 'openFilesOnly',
+            useLibraryCodeForTypes = true,
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
