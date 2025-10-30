@@ -104,6 +104,29 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    -- dap.adapters.codelldb = {
+    --   type = 'server',
+    --   port = '${port}',
+    --   executable = {
+    --     command = '$HOME/.local/share/nvim/mason/bin/codelldb', -- I installed codelldb through mason.nvim
+    --     args = { '--port', '${port}' },
+    --   },
+    -- }
+
+    dap.configurations.rust = {
+      {
+        name = 'Launch',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        console = 'integratedTerminal',
+      },
+    }
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
